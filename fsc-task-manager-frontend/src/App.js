@@ -1,80 +1,53 @@
-  // eslint-disable-next-line no-unused-vars
-import React from 'react'
-import TaskItem from './components/TaskItem'
+/* eslint-disable no-unused-vars */
+// import React from 'react'
+// import TaskItem from './components/TaskItem'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleStateChange = this.handleStateChange.bind(this);
-    this.state = {
-      tasks: [
-        {
-          id: '1',
-          description: 'Estudar Programação',
-          isCompleted: false,
-        },
-        {
-          id: '2',
-          description: 'Ler',
-          isCompleted: true,
-        }
-      ]
+
+import { useState, useEffect } from 'react';
+import axios from 'axios'
+
+import TaskItem from './components/TaskItem';
+
+const App = () => {
+
+  
+  const [tasks, setTasks] = useState([
+    {
+      id: '1',
+      description: 'Estudar Programação',
+      isCompleted: false,
+    },
+    {
+      id: '2',
+      description: 'Ler',
+      isCompleted: true,
+    }
+  ]);
+
+  const fetchTasks = async () => {
+    const urlBase = 'http://localhost:8000/tasks'
+    try {
+      const { data } = await axios.get(`${urlBase}`)
+      setTasks(data)
+    } catch (error) {
+      console.log(error)
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState)
-    console.log('component was updated')
-  }
+  useEffect(() => {
+    fetchTasks()
+  }, [])
 
-  handleStateChange() {
-    this.setState({
-      tasks: [],
-    })
-  }
-
-  render() {
-    return (
-      <>
-        {this.state.tasks.map(task => (
-        <TaskItem key={task.id} task={task}/>
-        ))}
-        <button onClick={this.handleStateChange}>Limpar tarefas</button>
-      </>
-    )
-  }
+  
+    
+  return (
+    <>
+      {tasks.map(task => (
+      <TaskItem key={task.id} task={task}/>
+      ))}
+    
+    </>
+  );
 }
 
 export default App;
-
-
-
-
-
-// import {useState} from 'react';
-// import TaskItem from './components/TaskItem';
-
-// const App = () => {
-//   const [tasks, setTasks] = useState([
-    // {
-    //   id: '1',
-    //   description: 'Estudar Programação',
-    //   isCompleted: false,
-    // },
-    // {
-    //   id: '2',
-    //   description: 'Ler',
-    //   isCompleted: true,
-    // }
-//   ]);
-    
-//     return (
-      // <>
-      //   {tasks.map(task => (
-      //   <TaskItem key={task.id} task={task}/>
-      //   ))}
-      // </>
-//     );
-// }
-
-// export default App;
