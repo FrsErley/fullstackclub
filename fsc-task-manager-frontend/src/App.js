@@ -1,15 +1,28 @@
-
+import {useState} from 'react';
+import TaskItem from './components/TaskItem';
 
 const App = () => {
-    const messages = ['Hello World', 'Olá Mundo', 'Bom dia'];
+  // eslint-disable-next-line no-unused-vars
+  const [tasks, setTasks] = useState([
+    {
+      id: '1',
+      description: 'Estudar Programação',
+      isCompleted: false,
+    },
+    {
+      id: '2',
+      description: 'Ler',
+      isCompleted: true,
+    }
+  ]);
     
-        return (
-            <>
-                {messages.map((message) => (
-                    <h1>{message}</h1>
-                ))}
-            </>
-        );
+    return (
+      <>
+        {tasks.map(task => (
+        <TaskItem key={task.id} task={task}/>
+        ))}
+      </>
+    );
 }
 
 export default App;
