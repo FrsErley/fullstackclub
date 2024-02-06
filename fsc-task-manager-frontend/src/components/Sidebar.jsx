@@ -5,12 +5,12 @@ import './Sidebar.scss'
 import logo from '../assets/images/logo.png'
 
 const Sidebar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate()
 
-    const handleSignOutClick = () => {
-        navigate('/login')
-    }
-    return (
+  const handleSignOutClick = () => {
+    navigate('/login')
+  }
+  return (
         <div className='sidebar-container'>
             <div className="logo">
                 <img src={logo} alt="Full Stack Club" />
@@ -21,7 +21,7 @@ const Sidebar = () => {
         </div>
             <CustomButton onClick={handleSignOutClick}>Sair</CustomButton>
         </div>
-    )
+  )
 }
 
 export default Sidebar

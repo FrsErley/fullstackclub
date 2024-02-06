@@ -1,44 +1,42 @@
 /* eslint-disable no-unused-vars */
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import axios from "axios";
-import { useAlert } from "react-alert";
+import { useState, useEffect, useMemo, useCallback } from 'react'
+import axios from 'axios'
+import { useAlert } from 'react-alert'
 
-import "./Tasks.scss"
+import './Tasks.scss'
 
-import TaskItem from "./TaskItem";
-import AddTask from "./AddTask";
-
-
+import TaskItem from './TaskItem'
+import AddTask from './AddTask'
 
 const Tasks = () => {
-    const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([])
 
-    const alert = useAlert();
-    
-    const fetchTasks = useCallback(async () => {
-        const urlBase = 'http://localhost:8000/tasks'
-        try {
-            const { data } = await axios.get(`${urlBase}`)
-            setTasks(data)
-        } catch (_error) {
-            alert.error('Não foi possível recuperar as tarefas criadas!')
-        }
-    }, [alert])
+  const alert = useAlert()
 
-    const lastTasks = useMemo(() => {
-        return tasks.filter(task => task.isCompleted === false)
-    }, [tasks]);
+  const fetchTasks = useCallback(async () => {
+    const urlBase = 'http://localhost:8000/tasks'
+    try {
+      const { data } = await axios.get(`${urlBase}`)
+      setTasks(data)
+    } catch (_error) {
+      alert.error('Não foi possível recuperar as tarefas criadas!')
+    }
+  }, [alert])
 
-    const completedTasks = useMemo(() => {
-        return tasks.filter(task => task.isCompleted === true)
-    }, [tasks]);
+  const lastTasks = useMemo(() => {
+    return tasks.filter(task => task.isCompleted === false)
+  }, [tasks])
 
-    useEffect(() => {
-        fetchTasks()
-    }, [fetchTasks])
+  const completedTasks = useMemo(() => {
+    return tasks.filter(task => task.isCompleted === true)
+  }, [tasks])
 
-    return (
+  useEffect(() => {
+    fetchTasks()
+  }, [fetchTasks])
+
+  return (
         <div className="tasks-container">
             <h2>Minhas tarefas</h2>
 
@@ -57,15 +55,15 @@ const Tasks = () => {
 
                 <div className="tasks-list">
                     {completedTasks.map((completedTask) => (
-                        <TaskItem 
-                            key={completedTask._id}    
-                            task={completedTask} 
+                        <TaskItem
+                            key={completedTask._id}
+                            task={completedTask}
                             fetchTasks={fetchTasks}/>
                     ))}
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
 export default Tasks
