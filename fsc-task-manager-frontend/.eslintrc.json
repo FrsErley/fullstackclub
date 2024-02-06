@@ -5,10 +5,13 @@
         "node": true
     },
     "extends": [
-        "standard",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "standard"
     ],
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
