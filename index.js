@@ -18,3 +18,10 @@ app.use("/tasks", TaskRouter);
 app.listen(8000, () => {
     console.log("Listening on port 8000!");
 });
+
+app.use(cors({
+    origin: 'https://fsc-task-manager-frontend.vercel.app/',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+}));
