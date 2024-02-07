@@ -24,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --fix --ext .jsx ."
+    "lint": "eslint --fix --ext .jsx .",
+    "husky:prepare": "yarn husky add .husky",
+    "prepare": "husky"
   },
   "eslintConfig": {
     "extends": [
@@ -54,10 +56,5 @@
     "eslint-plugin-react": "^7.33.2",
     "git-commit-msg-linter": "^5.0.6",
     "prettier-config-standard": "^7.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "lint": "eslint --fix --ext .jsx ."
-    }
   }
 }
