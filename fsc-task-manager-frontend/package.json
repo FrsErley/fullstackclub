@@ -7,11 +7,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.5",
+    "husky": "^9.0.10",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
     "react-dom": "^18.2.0",
+    "react-icons": "5.0.1",
     "react-router-dom": "6.0.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -52,5 +54,10 @@
     "eslint-plugin-react": "^7.33.2",
     "git-commit-msg-linter": "^5.0.6",
     "prettier-config-standard": "^7.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "lint": "eslint --fix --ext .jsx ."
+    }
   }
 }
